@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="SwipeMenu.MainPage">
+
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Image Aspect="AspectFill" Source="bg.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+        <BoxView BackgroundColor="#A1A1A1" Opacity="0.9"/>
+        <SwipeView x:Name="MainSwipeView" BackgroundColor="Transparent"
+                   SwipeStarted="SwipeStarted" SwipeEnded="SwipeEnded">
+            <SwipeView.LeftItems>
+                <SwipeItems>
+                    <SwipeItemView>
+                        <Grid>
+                            <StackLayout Spacing="20" Padding="35" WidthRequest="250" BindableLayout.ItemsSource="{Binding MyMenu}" 
+                                         VerticalOptions="CenterAndExpand">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="CloseSwipe"/>
+                                            </StackLayout.GestureRecognizers>
+                                            <pv:PancakeView BackgroundColor="#557ED2" HeightRequest="30" 
+                                                            WidthRequest="30" CornerRadius="15" VerticalOptions="Center" 
+                                                            HorizontalOptions="Start">
+                                                <Image Source="{Binding Icon}" HeightRequest="15" WidthRequest="15" VerticalOptions="Center" 
+                                                       HorizontalOptions="Center"/>
+                                            </pv:PancakeView>
+                                            <Label Text="{Binding Name}" TextColor="White" FontSize="15" FontAttributes="Bold" 
+                                                   HorizontalOptions="Start" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </Grid>
+                    </SwipeItemView>
+                </SwipeItems>
+            </SwipeView.LeftItems>
+            <Grid x:Name="swipeContent">
+                <pv:PancakeView x:Name="pancake" BackgroundColor="White">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Padding="30">
+                            <Image Source="menu.png" HeightRequest="18" HorizontalOptions="Start">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OpenSwipe"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image Source="profile.png" HeightRequest="36" HorizontalOptions="End"/>
+                        </Grid>
+                        <StackLayout Grid.Row="1" Padding="50,30">
+                            <Label Text="Hello Oludayo!" TextColor="Black" FontSize="22" FontAttributes="Bold"/>
+                            <Label Text="What would you like to do today?" TextColor="Black" FontSize="20"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Spacing="20" Padding="50,0,0,0">
+                            <pv:PancakeView Padding="20,10" CornerRadius="20,0,20,0" BackgroundColor="#0055FF" 
+                                            HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <StackLayout Spacing="20" Orientation="Horizontal">
+                                    <Image Source="video.png" WidthRequest="13"/>
+                                    <Label Text="Record YouTube Video" TextColor="White" FontSize="14" 
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </pv:PancakeView>
+                            <pv:PancakeView Padding="20,10" CornerRadius="20,0,20,0" BackgroundColor="#0055FF" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <StackLayout Spacing="20" Orientation="Horizontal">
+                                    <Image Source="edit.png" WidthRequest="13"/>
+                                    <Label Text="Edit your Videos" TextColor="White" FontSize="14" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </pv:PancakeView>
+                            <pv:PancakeView Padding="20,10" CornerRadius="20,0,20,0" BackgroundColor="#0055FF" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <StackLayout Spacing="20" Orientation="Horizontal">
+                                    <Image Source="upload.png" WidthRequest="13"/>
+                                    <Label Text="Upload Videos to YouTube" TextColor="White" FontSize="14" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </pv:PancakeView>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3" Padding="50,0">
+                            <Label Text="My Tasks" TextColor="Black" FontSize="15" FontAttributes="Bold" />
+                            <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <pv:PancakeView Padding="10" BackgroundColor="#ECF2FC" CornerRadius="15" HeightRequest="90">
+                                    <Grid HorizontalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <StackLayout Orientation="Horizontal" Spacing="10">
+                                            <Image Source="checkmark.png" HeightRequest="12"/>
+                                            <Label Text="Completed" TextColor="#8AB0FB" FontSize="12" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <Label Grid.Row="1" Text="25" TextColor="Black" FontSize="25" VerticalOptions="End"/>
+                                    </Grid>
+                                </pv:PancakeView>
+                                <pv:PancakeView Grid.Column="1" Padding="10" BackgroundColor="#ECF2FC" CornerRadius="15" HeightRequest="90">
+                                    <Grid HorizontalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <StackLayout Orientation="Horizontal" Spacing="10">
+                                            <Image Source="timelapse.png" HeightRequest="12"/>
+                                            <Label Text="In Pregress" TextColor="#8AB0FB" FontSize="12" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        <Label Grid.Row="1" Text="8" TextColor="Black" FontSize="25" VerticalOptions="End"/>
+                                    </Grid>
+                                </pv:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </pv:PancakeView>
+            </Grid>
+        </SwipeView>
+    </Grid>
+
+</ContentPage>
